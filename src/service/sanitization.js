@@ -252,10 +252,10 @@ function $translateSanitizationProvider () {
     };
   };
 
+  var htmlEscapeElement = angular.element('<div></div>');
   var htmlEscapeValue = function (value) {
-    var element = angular.element('<div></div>');
-    element.text(value); // not chainable, see #1044
-    return element.html();
+    htmlEscapeElement.text(value); // not chainable, see #1044
+    return htmlEscapeElement.html();
   };
 
   var htmlSanitizeValue = function (value) {

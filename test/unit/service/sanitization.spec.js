@@ -134,20 +134,12 @@ describe('pascalprecht.translate', function () {
             save : angular.noop
           };
 
-          var spyAngularElementReturnValue = jasmine.createSpyObj('angularElement', ['html', 'off', 'text', 'data']);
-
-          spyOn(angular, 'element').and.returnValue(spyAngularElementReturnValue);
-
           /* Sanitized user should not have a save property. */
 
           sanitizedUser = $translateSanitization.sanitize({user : user}, 'params').user;
 
           expect('firstName' in sanitizedUser).toEqual(true);
           expect('save' in sanitizedUser).toEqual(false);
-
-          /* `user.save` should not be called. */
-          expect(spyAngularElementReturnValue.text.calls.count()).toEqual(1);
-          expect(spyAngularElementReturnValue.text.calls.argsFor(0)).toEqual(['<b>Foo</b>']);
 
         });
 
